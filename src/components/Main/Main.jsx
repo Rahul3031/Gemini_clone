@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import './Main.css';
 import { assets } from '../../assets/assets';
 import { context } from '../../context/Context';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 const Main = () => {
 
     const {input,setInput,recentPrompt,setRecentPrompt,prevPrompts,setPrevPrompts,showResult,loading,resultData,onsent} = useContext(context);
@@ -9,12 +11,19 @@ const Main = () => {
         setRecentPrompt(prompt);
         await onsent(prompt);
       }
+      const navigate = useNavigate();
+      
+      const handle = ()=> {
+        navigate('/Gemini_clone/homepage');
+      }
 
-  return (
+      const {currentUser} = useAuth();
+
+  return ( 
     <div className="Main">
         <div className="nav">
             <p>Gemini</p>
-            <img src={assets.user_icon} alt="" />
+            <img  onClick={handle} src={assets.user_icon} alt="" title={`User Profile of ${currentUser.email}`} />
         </div>
         <div className="main-container">
 

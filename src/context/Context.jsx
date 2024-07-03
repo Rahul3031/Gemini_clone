@@ -3,7 +3,7 @@ import run from "../config/gemini";
 
 export const context = createContext();
 
-const ContextProvider = (props) =>{
+const ContextProvider = (props) =>{ 
 
 
     const [input,setInput] = useState("");
